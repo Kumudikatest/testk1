@@ -1,15 +1,14 @@
 let AWS = require('aws-sdk');
-const sns = new AWS.SNS();
+const kinesis = new AWS.Kinesis();
 
 exports.handler = function (event, context, callback) {
-    sns.publish({
-        Message: 'Test message',
-        MessageAttributes: {},
-        MessageStructure: 'String',
-        TopicArn: 'arn:aws:sns:us-east-1:318300609668:newk'
+
+
+    kinesis.describeStream({
+        StreamName: 'newk'
     }).promise()
         .then(data => {
-            // your code goes here
+            // your logic goes here
         })
         .catch(err => {
             // error handling goes here
